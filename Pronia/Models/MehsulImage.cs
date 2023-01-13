@@ -7,6 +7,6 @@ namespace Pronia.Models
         public string ImageUrl { get; set; }
         public bool? IsCover { get; set; }
         public int ProductId { get; set; }
-        public Product? Product { get; set; }
+        public Mehsul? Mehsul { get; set; }
     }
 }

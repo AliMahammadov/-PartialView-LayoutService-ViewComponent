@@ -9,6 +9,6 @@ namespace Pronia.Models
         public string Name { get; set; }
         //public string Image { get; set; }    //bu
         public string ImgUrl { get; set; }
-        public List< Product>? products { get; set; }
+        public List< Mehsul>? mehsuls { get; set; }
     }
 }

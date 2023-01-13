@@ -154,6 +154,9 @@ namespace Pronia.Migrations
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MehsulId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -161,7 +164,7 @@ namespace Pronia.Migrations
 
                     b.HasIndex("ColorId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("MehsulId");
 
                     b.ToTable("MehsulColor");
                 });
@@ -174,13 +177,12 @@ namespace Pronia.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AboutReturnRequest")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Guarantee")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("IsCover")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("MehsulId")
                         .HasColumnType("int");
@@ -188,13 +190,11 @@ namespace Pronia.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Shipping")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MehsulId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("MehsulImage");
                 });
@@ -340,24 +340,28 @@ namespace Pronia.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Pronia.Models.Mehsul", "Product")
+                    b.HasOne("Pronia.Models.Mehsul", "Mehsul")
                         .WithMany("MehsulColors")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MehsulId");
 
                     b.Navigation("Color");
 
-                    b.Navigation("Product");
+                    b.Navigation("Mehsul");
                 });
 
             modelBuilder.Entity("Pronia.Models.MehsulImage", b =>
                 {
-                    b.HasOne("Pronia.Models.Mehsul", "Mehsul")
+                    b.HasOne("Pronia.Models.Mehsul", null)
                         .WithMany("MehsulImage")
                         .HasForeignKey("MehsulId");
 
-                    b.Navigation("Mehsul");
+                    b.HasOne("Pronia.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Pronia.Models.MehsulInformation", b =>

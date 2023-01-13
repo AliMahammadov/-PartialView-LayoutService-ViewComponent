@@ -31,87 +31,87 @@ namespace Pronia.Areas.Admin.Controllers
             ViewBag.Sizes = new SelectList(_context.Sizes, nameof(Size.Id), nameof(Size.Name));
             return View();
         }
-        //[HttpPost]
-        //public IActionResult Create(CreateMehsulVM cp)
-        //{
-        //    var coverImg = cp.CoverImage;
-        //    var hoverImg = cp.HoverImage;
-        //    var otherImgs = cp.OtherImages ?? new List<IFormFile>();
-        //    string result = coverImg?.CheckValidate("image/", 300);
-        //    if (result?.Length > 0)
-        //    {
-        //        ModelState.AddModelError("CoverImage", result);
-        //    }
-        //    result = hoverImg?.CheckValidate("image/", 300);
-        //    if (result?.Length > 0)
-        //    {
-        //        ModelState.AddModelError("HoverImage", result);
-        //    }
-        //    foreach (IFormFile image in otherImgs)
-        //    {
-        //        result = image.CheckValidate("image/", 300);
-        //        if (result?.Length > 0)
-        //        {
-        //            ModelState.AddModelError("OtherImages", result);
-        //        }
-        //    }
-        //    foreach (int colorId in (cp.ColorIds ?? new List<int>()))
-        //    {
-        //        if (!_context.Colors.Any(c => c.Id == colorId))
-        //        {
-        //            ModelState.AddModelError("ColorIds", "Get tullan");
-        //            break;
-        //        }
-        //    }
-        //    foreach (int sizeId in cp.SizeIds)
-        //    {
-        //        if (!_context.Sizes.Any(s => s.Id == sizeId))
-        //        {
-        //            ModelState.AddModelError("SizeIds", "Yeniden daxil edin x2");
-        //            break;
-        //        }
-        //    }
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ViewBag.Colors = new SelectList(_context.Colors, "Id", "Name");
-        //        ViewBag.Sizes = new SelectList(_context.Sizes, nameof(Size.Id), nameof(Size.Name));
-        //        return View();
-        //    }
-        //    var sizes = _context.Sizes.Where(s => cp.SizeIds.Contains(s.Id));
-        //    var colors = _context.Colors.Where(c => cp.ColorIds.Contains(c.Id));
-        //    Mehsul newProduct = new Mehsul
-        //    {
-        //        Name = cp.Name,
-        //        CostPrice = cp.CostPrice,
-        //        SellPrice = cp.SellPrice,
-        //        Description = cp.Description,
-        //        Discount = cp.Discount,
-        //        IsDeleted = false,
-        //        SKU = "1"
-        //    };
-        //    List<MehsulImage> images = new List<MehsulImage>();
-        //    images.Add(new MehsulImage { ImageUrl = coverImg?.SaveFile(Path.Combine(_env.WebRootPath, "assets", "images", "product")), IsCover = true, Mehsul = newProduct });
-        //    if (hoverImg != null)
-        //    {
-        //        images.Add(new MehsulImage { ImageUrl = hoverImg.SaveFile(Path.Combine(_env.WebRootPath, "assets", "images", "product")), IsCover = false, Product = newProduct });
-        //    }
-        //    foreach (var item in otherImgs)
-        //    {
-        //        images.Add(new MehsulImage { ImageUrl = item?.SaveFile(Path.Combine(_env.WebRootPath, "assets", "images", "product")), IsCover = null,  = newProduct });
-        //    }
-        //    newProduct.MehsulImage = images;
-        //    _context.Mehsuls.Add(newProduct);
-        //    foreach (var item in colors)
-        //    {
-        //        _context.MehsulColor.Add(new MehsulColor { Mehsul = newProduct, ProductId = item.Id });
-        //    }
-        //    foreach (var item in sizes)
-        //    {
-        //        _context.MehsulSize.Add(new MehsulSize { Mehsul = newProduct, SizeId = item.Id });
-        //    }
-        //    _context.SaveChanges();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        [HttpPost]
+        public IActionResult Create(CreateMehsulVM cp)
+        {
+            var coverImg = cp.CoverImage;
+            var hoverImg = cp.HoverImage;
+            var otherImgs = cp.OtherImages ?? new List<IFormFile>();
+            string result = coverImg?.CheckValidate("image/", 300);
+            if (result?.Length > 0)
+            {
+                ModelState.AddModelError("CoverImage", result);
+            }
+            result = hoverImg?.CheckValidate("image/", 300);
+            if (result?.Length > 0)
+            {
+                ModelState.AddModelError("HoverImage", result);
+            }
+            foreach (IFormFile image in otherImgs)
+            {
+                result = image.CheckValidate("image/", 300);
+                if (result?.Length > 0)
+                {
+                    ModelState.AddModelError("OtherImages", result);
+                }
+            }
+            foreach (int colorId in (cp.ColorIds ?? new List<int>()))
+            {
+                if (!_context.Colors.Any(c => c.Id == colorId))
+                {
+                    ModelState.AddModelError("ColorIds", "Get tullan");
+                    break;
+                }
+            }
+            foreach (int sizeId in cp.SizeIds)
+            {
+                if (!_context.Sizes.Any(s => s.Id == sizeId))
+                {
+                    ModelState.AddModelError("SizeIds", "Yeniden daxil edin x2");
+                    break;
+                }
+            }
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Colors = new SelectList(_context.Colors, "Id", "Name");
+                ViewBag.Sizes = new SelectList(_context.Sizes, nameof(Size.Id), nameof(Size.Name));
+                return View();
+            }
+            var sizes = _context.Sizes.Where(s => cp.SizeIds.Contains(s.Id));
+            var colors = _context.Colors.Where(c => cp.ColorIds.Contains(c.Id));
+            Mehsul mehsul = new Mehsul
+            {
+                Name = cp.Name,
+                CostPrice = cp.CostPrice,
+                SellPrice = cp.SellPrice,
+                Description = cp.Description,
+                Discount = cp.Discount,
+                IsDeleted = false,
+                SKU = "1"
+            };
+            List<MehsulImage> images = new List<MehsulImage>();
+            images.Add(new MehsulImage { ImageUrl = coverImg?.SaveFile(Path.Combine(_env.WebRootPath, "assets", "images", "product")), IsCover = true, Mehsul = mehsul });
+            if (hoverImg != null)
+            {
+                images.Add(new MehsulImage { ImageUrl = hoverImg.SaveFile(Path.Combine(_env.WebRootPath, "assets", "images", "product")), IsCover = false, Mehsul = mehsul });
+            }
+            foreach (var item in otherImgs)
+            {
+                images.Add(new MehsulImage { ImageUrl = item?.SaveFile(Path.Combine(_env.WebRootPath, "assets", "images", "product")), IsCover = null, Mehsul = mehsul });
+            }
+            mehsul.MehsulImage = images;
+            _context.Mehsuls.Add(mehsul);
+            foreach (var item in colors)
+            {
+                _context.MehsulColor.Add(new MehsulColor { Mehsul = mehsul, ProductId = item.Id });
+            }
+            foreach (var item in sizes)
+            {
+                _context.MehsulSize.Add(new MehsulSize { Mehsul = mehsul, SizeId = item.Id });
+            }
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
         //public IActionResult UpdateMehsul(int? id)
         //{
         //    if (id == null) return BadRequest();

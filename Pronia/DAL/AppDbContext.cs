@@ -15,7 +15,6 @@ namespace Pronia.DAL
             
         }
         public DbSet<Category> categories { get; set; }
-        public DbSet<Product> products { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Slider> Sliders{ get; set; }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\HomeWork\\BackEnd\\Pronia\\Pronia\\Pronia.csproj": {}
+    "C:\\Users\\CA.R215.18\\Desktop\\ALI\\-PartialView-LayoutService-ViewComponent\\Pronia\\Pronia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\HomeWork\\BackEnd\\Pronia\\Pronia\\Pronia.csproj": {
+    "C:\\Users\\CA.R215.18\\Desktop\\ALI\\-PartialView-LayoutService-ViewComponent\\Pronia\\Pronia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\HomeWork\\BackEnd\\Pronia\\Pronia\\Pronia.csproj",
+        "projectUniqueName": "C:\\Users\\CA.R215.18\\Desktop\\ALI\\-PartialView-LayoutService-ViewComponent\\Pronia\\Pronia.csproj",
         "projectName": "Pronia",
-        "projectPath": "C:\\Users\\User\\Desktop\\HomeWork\\BackEnd\\Pronia\\Pronia\\Pronia.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\HomeWork\\BackEnd\\Pronia\\Pronia\\obj\\",
+        "projectPath": "C:\\Users\\CA.R215.18\\Desktop\\ALI\\-PartialView-LayoutService-ViewComponent\\Pronia\\Pronia.csproj",
+        "packagesPath": "C:\\Users\\CA.R215.18\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CA.R215.18\\Desktop\\ALI\\-PartialView-LayoutService-ViewComponent\\Pronia\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CA.R215.18\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
